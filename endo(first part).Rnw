@@ -1,0 +1,405 @@
+% \section*{The}
+% \label{sec:}
+
+<<endo_Symptome,include=TRUE,out.width="0.31\\linewidth",echo=FALSE,warning=FALSE,message=FALSE,results='asis'>>=
+
+library(car)
+library(MASS)
+library(rcompanion)
+library(rstatix)
+library(fitdistrplus)
+library(logspline)
+
+library(tidyverse)
+library(tidyr)
+library(magrittr)
+library(lme4)
+library(broom)
+library(ggeffects)
+library(lattice)
+select <- dplyr::select
+library(dplyr)
+
+library(moments)
+library(glmmTMB)
+library(stats4)
+library(bbmle)  ## for AICtab
+library(ggplot2)
+library(parameters)
+library(sjPlot)
+library(sjmisc)
+library(Matrix)
+library(lfe)
+library(see)
+library(DHARMa)
+library(htmlTable)
+library(tableHTML)
+library(magrittr)
+
+library(HH)
+
+
+load("X:/symptome/endo.Rdata")
+
+# ---------------------
+# ---------------------
+
+lik   <- c("1","2","3","4","5")
+
+
+Unterleibsschmerzen               <- round( ( (table(ds$S101_01)[lik] / sum(table(ds$S101_01)[lik])) * 100 ), digits = 2 )
+BauchschmerzenAußerhalbUnterleibs <- round( ( (table(ds$S101_02)[lik] / sum(table(ds$S101_02)[lik])) * 100 ), digits = 2 )
+Rueckenschmerzen                  <- round( ( (table(ds$S101_03)[lik] / sum(table(ds$S101_03)[lik])) * 100 ), digits = 2 )
+SchmerzenBeimStuhlgang            <- round( ( (table(ds$S101_04)[lik] / sum(table(ds$S101_04)[lik])) * 100 ), digits = 2 )
+SchmerzenBeimUrinieren            <- round( ( (table(ds$S101_05)[lik] / sum(table(ds$S101_05)[lik])) * 100 ), digits = 2 )
+Schulterschmerzen                 <- round( ( (table(ds$S101_06)[lik] / sum(table(ds$S101_06)[lik])) * 100 ), digits = 2 )
+Beinschmerzen                     <- round( ( (table(ds$S101_07)[lik] / sum(table(ds$S101_07)[lik])) * 100 ), digits = 2 )
+BlutImUrin                        <- round( ( (table(ds$S101_08)[lik] / sum(table(ds$S101_08)[lik])) * 100 ), digits = 2 )
+BlutImStuhlgang                   <- round( ( (table(ds$S101_09)[lik] / sum(table(ds$S101_09)[lik])) * 100 ), digits = 2 )
+SchmerzenBeimGeschlechtsverkehr   <- round( ( (table(ds$S101_10)[lik] / sum(table(ds$S101_10)[lik])) * 100 ), digits = 2 )
+
+SchmerzenNachGeschlechtsverkehr   <- round( ( (table(ds$S101_11)[lik] / sum(table(ds$S101_11)[lik])) * 100 ), digits = 2 )
+UnerfuellterKinderwunsch          <- round( ( (table(ds$S101_12)[lik] / sum(table(ds$S101_12)[lik])) * 100 ), digits = 2 )
+Depression                        <- round( ( (table(ds$S101_13)[lik] / sum(table(ds$S101_13)[lik])) * 100 ), digits = 2 )
+Erschoepfung_Fatigue              <- round( ( (table(ds$S101_14)[lik] / sum(table(ds$S101_14)[lik])) * 100 ), digits = 2 )
+Kopfschmerzen_Migraene            <- round( ( (table(ds$S101_15)[lik] / sum(table(ds$S101_15)[lik])) * 100 ), digits = 2 )
+StarkeRegelschmerzen              <- round( ( (table(ds$S101_16)[lik] / sum(table(ds$S101_16)[lik])) * 100 ), digits = 2 )
+VerlaengerteRegelblutung          <- round( ( (table(ds$S101_17)[lik] / sum(table(ds$S101_17)[lik])) * 100 ), digits = 2 )
+VerstaerkteRegelblutung           <- round( ( (table(ds$S101_18)[lik] / sum(table(ds$S101_18)[lik])) * 100 ), digits = 2 )
+Blaehungen                        <- round( ( (table(ds$S101_19)[lik] / sum(table(ds$S101_19)[lik])) * 100 ), digits = 2 )
+Blaehbauch_Endo_Belly             <- round( ( (table(ds$S101_20)[lik] / sum(table(ds$S101_20)[lik])) * 100 ), digits = 2 )
+
+Uebelkeit                         <- round( ( (table(ds$S101_21)[lik] / sum(table(ds$S101_21)[lik])) * 100 ), digits = 2 )
+Schwindel                         <- round( ( (table(ds$S101_22)[lik] / sum(table(ds$S101_22)[lik])) * 100 ), digits = 2 )
+Appetitlosigkeit                  <- round( ( (table(ds$S101_23)[lik] / sum(table(ds$S101_23)[lik])) * 100 ), digits = 2 )
+Heißhunger                        <- round( ( (table(ds$S101_24)[lik] / sum(table(ds$S101_24)[lik])) * 100 ), digits = 2 )
+HarndrangOhneWasserlassen         <- round( ( (table(ds$S101_25)[lik] / sum(table(ds$S101_25)[lik])) * 100 ), digits = 2 )
+HaeufigesWasserlassen             <- round( ( (table(ds$S101_26)[lik] / sum(table(ds$S101_26)[lik])) * 100 ), digits = 2 )
+Ohnmacht                          <- round( ( (table(ds$S101_27)[lik] / sum(table(ds$S101_27)[lik])) * 100 ), digits = 2 )
+Geruchsverlust                    <- round( ( (table(ds$S101_28)[lik] / sum(table(ds$S101_28)[lik])) * 100 ), digits = 2 )
+Hoerverlust                       <- round( ( (table(ds$S101_29)[lik] / sum(table(ds$S101_29)[lik])) * 100 ), digits = 2 )
+TaubheitInHaenden                 <- round( ( (table(ds$S101_30)[lik] / sum(table(ds$S101_30)[lik])) * 100 ), digits = 2 )
+
+TaubheitInBeinen                  <- round( ( (table(ds$S101_31)[lik] / sum(table(ds$S101_31)[lik])) * 100 ), digits = 2 )
+Nierenschmerzen                   <- round( ( (table(ds$S101_32)[lik] / sum(table(ds$S101_32)[lik])) * 100 ), digits = 2 )
+Gliederschmerzen                  <- round( ( (table(ds$S101_33)[lik] / sum(table(ds$S101_33)[lik])) * 100 ), digits = 2 )
+Fieber                            <- round( ( (table(ds$S101_34)[lik] / sum(table(ds$S101_34)[lik])) * 100 ), digits = 2 )
+Hitzewallungen                    <- round( ( (table(ds$S101_35)[lik] / sum(table(ds$S101_35)[lik])) * 100 ), digits = 2 )
+Schuettelfrost                    <- round( ( (table(ds$S101_36)[lik] / sum(table(ds$S101_36)[lik])) * 100 ), digits = 2 )
+Geschmacksveraenderung_Eisen      <- round( ( (table(ds$S101_37)[lik] / sum(table(ds$S101_37)[lik])) * 100 ), digits = 2 )
+Kaeltegefuehl_Frieren             <- round( ( (table(ds$S101_38)[lik] / sum(table(ds$S101_38)[lik])) * 100 ), digits = 2 )
+KlumpigeBlutung                   <- round( ( (table(ds$S101_39)[lik] / sum(table(ds$S101_39)[lik])) * 100 ), digits = 2 )
+Gelenkschmerzen                   <- round( ( (table(ds$S101_40)[lik] / sum(table(ds$S101_40)[lik])) * 100 ), digits = 2 )
+
+Sodbrennen                        <- round( ( (table(ds$S101_41)[lik] / sum(table(ds$S101_41)[lik])) * 100 ), digits = 2 )
+Aufstoßen                         <- round( ( (table(ds$S101_42)[lik] / sum(table(ds$S101_42)[lik])) * 100 ), digits = 2 )
+Blasenentzuendung                 <- round( ( (table(ds$S101_43)[lik] / sum(table(ds$S101_43)[lik])) * 100 ), digits = 2 )
+SchmerzenInBrust                  <- round( ( (table(ds$S101_44)[lik] / sum(table(ds$S101_44)[lik])) * 100 ), digits = 2 )
+Atemnot_Kurzatmigkeit             <- round( ( (table(ds$S101_45)[lik] / sum(table(ds$S101_45)[lik])) * 100 ), digits = 2 )
+Vaginismus                        <- round( ( (table(ds$S101_46)[lik] / sum(table(ds$S101_46)[lik])) * 100 ), digits = 2 )
+Durchfall                         <- round( ( (table(ds$S101_47)[lik] / sum(table(ds$S101_47)[lik])) * 100 ), digits = 2 )
+Verstopfung                       <- round( ( (table(ds$S101_48)[lik] / sum(table(ds$S101_48)[lik])) * 100 ), digits = 2 )
+Bluthusten                        <- round( ( (table(ds$S101_49)[2:5] / sum(table(ds$S101_49)[2:5])) * 100 ), digits = 2 )
+Bluthusten[5] = 0.00
+
+Symp <- list( Unterleibsschmerzen, BauchschmerzenAußerhalbUnterleibs, Rueckenschmerzen, 
+              SchmerzenBeimStuhlgang, SchmerzenBeimUrinieren, Schulterschmerzen, Beinschmerzen, 
+              BlutImUrin, BlutImStuhlgang, SchmerzenBeimGeschlechtsverkehr, SchmerzenNachGeschlechtsverkehr,
+              UnerfuellterKinderwunsch, Depression, Erschoepfung_Fatigue, Kopfschmerzen_Migraene, 
+              StarkeRegelschmerzen, VerlaengerteRegelblutung, VerstaerkteRegelblutung, Blaehungen, 
+              Blaehbauch_Endo_Belly, Uebelkeit, Schwindel, Appetitlosigkeit, Heißhunger, HarndrangOhneWasserlassen, 
+              HaeufigesWasserlassen, Ohnmacht, Geruchsverlust, Hoerverlust, TaubheitInHaenden, 
+              TaubheitInBeinen, Nierenschmerzen, Gliederschmerzen, Fieber, Hitzewallungen, 
+              Schuettelfrost, Geschmacksveraenderung_Eisen, Kaeltegefuehl_Frieren, KlumpigeBlutung, 
+              Gelenkschmerzen, Sodbrennen, Aufstoßen, Blasenentzuendung, SchmerzenInBrust, 
+              Atemnot_Kurzatmigkeit, Vaginismus, Durchfall, Verstopfung, Bluthusten )
+
+createdTab <- do.call("rbind", Symp)
+
+sum_table <- c(sum(table(ds$S101_01)[lik]), sum(table(ds$S101_02)[lik]), sum(table(ds$S101_03)[lik]),
+               sum(table(ds$S101_04)[lik]), sum(table(ds$S101_05)[lik]), sum(table(ds$S101_06)[lik]),
+               sum(table(ds$S101_07)[lik]), sum(table(ds$S101_08)[lik]), sum(table(ds$S101_09)[lik]),
+               sum(table(ds$S101_10)[lik]), sum(table(ds$S101_11)[lik]), sum(table(ds$S101_12)[lik]),
+               sum(table(ds$S101_13)[lik]), sum(table(ds$S101_14)[lik]), sum(table(ds$S101_15)[lik]),
+               sum(table(ds$S101_16)[lik]), sum(table(ds$S101_17)[lik]), sum(table(ds$S101_18)[lik]),
+               sum(table(ds$S101_19)[lik]), sum(table(ds$S101_20)[lik]), sum(table(ds$S101_21)[lik]),
+               sum(table(ds$S101_22)[lik]), sum(table(ds$S101_23)[lik]), sum(table(ds$S101_24)[lik]),
+               sum(table(ds$S101_25)[lik]), sum(table(ds$S101_26)[lik]), sum(table(ds$S101_27)[lik]),
+               sum(table(ds$S101_28)[lik]), sum(table(ds$S101_29)[lik]), sum(table(ds$S101_30)[lik]),
+               sum(table(ds$S101_31)[lik]), sum(table(ds$S101_32)[lik]), sum(table(ds$S101_33)[lik]),
+               sum(table(ds$S101_34)[lik]), sum(table(ds$S101_35)[lik]), sum(table(ds$S101_36)[lik]),
+               sum(table(ds$S101_37)[lik]), sum(table(ds$S101_38)[lik]), sum(table(ds$S101_39)[lik]),
+               sum(table(ds$S101_40)[lik]), sum(table(ds$S101_41)[lik]), sum(table(ds$S101_42)[lik]),
+               sum(table(ds$S101_43)[lik]), sum(table(ds$S101_44)[lik]), sum(table(ds$S101_45)[lik]),
+               sum(table(ds$S101_46)[lik]), sum(table(ds$S101_47)[lik]), sum(table(ds$S101_48)[lik]),
+               sum(table(ds$S101_49)[2:5]) )
+
+createdTab <- cbind( sum_table, createdTab )
+
+
+com_S101_01 <- str_replace_all(comment(ds$S101_01), "symptome: ", "")
+com_S101_02 <- str_replace_all(comment(ds$S101_02), "symptome: ", "")
+com_S101_03 <- str_replace_all(comment(ds$S101_03), "symptome: ", "")
+com_S101_04 <- str_replace_all(comment(ds$S101_04), "symptome: ", "")
+com_S101_05 <- str_replace_all(comment(ds$S101_05), "symptome: ", "")
+com_S101_06 <- str_replace_all(comment(ds$S101_06), "symptome: ", "")
+com_S101_07 <- str_replace_all(comment(ds$S101_07), "symptome: ", "")
+com_S101_08 <- str_replace_all(comment(ds$S101_08), "symptome: ", "")
+com_S101_09 <- str_replace_all(comment(ds$S101_09), "symptome: ", "")
+com_S101_10 <- str_replace_all(comment(ds$S101_10), "symptome: ", "")
+
+com_S101_11 <- str_replace_all(comment(ds$S101_11), "symptome: ", "")
+com_S101_12 <- str_replace_all(comment(ds$S101_12), "symptome: ", "")
+com_S101_13 <- str_replace_all(comment(ds$S101_13), "symptome: ", "")
+com_S101_14 <- str_replace_all(comment(ds$S101_14), "symptome: ", "")
+com_S101_15 <- str_replace_all(comment(ds$S101_15), "symptome: ", "")
+com_S101_16 <- str_replace_all(comment(ds$S101_16), "symptome: ", "")
+com_S101_17 <- str_replace_all(comment(ds$S101_17), "symptome: ", "")
+com_S101_18 <- str_replace_all(comment(ds$S101_18), "symptome: ", "")
+com_S101_19 <- str_replace_all(comment(ds$S101_19), "symptome: ", "")
+com_S101_20 <- str_replace_all(comment(ds$S101_20), "symptome: ", "")
+
+com_S101_21 <- str_replace_all(comment(ds$S101_21), "symptome: ", "")
+com_S101_22 <- str_replace_all(comment(ds$S101_22), "symptome: ", "")
+com_S101_23 <- str_replace_all(comment(ds$S101_23), "symptome: ", "")
+com_S101_24 <- str_replace_all(comment(ds$S101_24), "symptome: ", "")
+com_S101_25 <- str_replace_all(comment(ds$S101_25), "symptome: ", "")
+com_S101_26 <- str_replace_all(comment(ds$S101_26), "symptome: ", "")
+com_S101_27 <- str_replace_all(comment(ds$S101_27), "symptome: ", "")
+com_S101_28 <- str_replace_all(comment(ds$S101_28), "symptome: ", "")
+com_S101_29 <- str_replace_all(comment(ds$S101_29), "symptome: ", "")
+com_S101_30 <- str_replace_all(comment(ds$S101_30), "symptome: ", "")
+
+com_S101_31 <- str_replace_all(comment(ds$S101_31), "symptome: ", "")
+com_S101_32 <- str_replace_all(comment(ds$S101_32), "symptome: ", "")
+com_S101_33 <- str_replace_all(comment(ds$S101_33), "symptome: ", "")
+com_S101_34 <- str_replace_all(comment(ds$S101_34), "symptome: ", "")
+com_S101_35 <- str_replace_all(comment(ds$S101_35), "symptome: ", "")
+com_S101_36 <- str_replace_all(comment(ds$S101_36), "symptome: ", "")
+com_S101_37 <- str_replace_all(comment(ds$S101_37), "symptome: ", "")
+com_S101_38 <- str_replace_all(comment(ds$S101_38), "symptome: ", "")
+com_S101_39 <- str_replace_all(comment(ds$S101_39), "symptome: ", "")
+com_S101_40 <- str_replace_all(comment(ds$S101_40), "symptome: ", "")
+
+com_S101_41 <- str_replace_all(comment(ds$S101_41), "symptome: ", "")
+com_S101_42 <- str_replace_all(comment(ds$S101_42), "symptome: ", "")
+com_S101_43 <- str_replace_all(comment(ds$S101_43), "symptome: ", "")
+com_S101_44 <- str_replace_all(comment(ds$S101_44), "symptome: ", "")
+com_S101_45 <- str_replace_all(comment(ds$S101_45), "symptome: ", "")
+com_S101_46 <- str_replace_all(comment(ds$S101_46), "symptome: ", "")
+com_S101_47 <- str_replace_all(comment(ds$S101_47), "symptome: ", "")
+com_S101_48 <- str_replace_all(comment(ds$S101_48), "symptome: ", "")
+com_S101_49 <- str_replace_all(comment(ds$S101_49), "symptome: ", "")
+
+
+com_S101_02 <- str_replace_all(com_S101_02  , "ß",   "ss")
+com_S101_03 <- str_replace_all(com_S101_03  , "ü",   "ue")
+
+com_S101_12 <- str_replace_all(com_S101_12  , "ü",   "ue")
+com_S101_14 <- str_replace_all(com_S101_14  , "ö",   "oe")
+com_S101_15 <- str_replace_all(com_S101_15  , "ä",   "ae")
+com_S101_17 <- str_replace_all(com_S101_17  , "ä",   "ae")
+com_S101_18 <- str_replace_all(com_S101_18  , "ä",   "ae")
+com_S101_19 <- str_replace_all(com_S101_19  , "ä",   "ae")
+com_S101_20 <- str_replace_all(com_S101_20  , "ä",   "ae")
+
+com_S101_21 <- str_replace_all(com_S101_21  , "Ü",   "Ue")
+com_S101_24 <- str_replace_all(com_S101_24  , "ß",   "ss")
+com_S101_26 <- str_replace_all(com_S101_26  , "ä",   "ae")
+com_S101_29 <- str_replace_all(com_S101_29  , "ö",   "oe")
+
+com_S101_30 <- str_replace_all(com_S101_30  , "ä",   "ae")
+com_S101_36 <- str_replace_all(com_S101_36  , "ü",   "ue")
+com_S101_37 <- str_replace_all(com_S101_37  , "ä",   "ae")
+com_S101_38 <- str_replace_all(com_S101_38  , "ä",   "ae")
+com_S101_38 <- str_replace_all(com_S101_38  , "ü",   "ue")
+
+com_S101_42 <- str_replace_all(com_S101_42  , "ß",   "ss")
+com_S101_43 <- str_replace_all(com_S101_43  , "ü",   "ue")
+
+
+matrix( createdTab,
+        ncol = 6,
+        dimnames = list(c(com_S101_01, com_S101_02, com_S101_03, com_S101_04, com_S101_05, com_S101_06, com_S101_07,
+                          com_S101_08, com_S101_09, com_S101_10, com_S101_11, com_S101_12, com_S101_13, com_S101_14,
+                          com_S101_15, com_S101_16, com_S101_17, com_S101_18, com_S101_19, com_S101_20, com_S101_21,
+                          com_S101_22, com_S101_23, com_S101_24, com_S101_25, com_S101_26, com_S101_27, com_S101_28,
+                          com_S101_29, com_S101_30, com_S101_31, com_S101_32, com_S101_33, com_S101_34, com_S101_35,
+                          com_S101_36, com_S101_37, com_S101_38, com_S101_39, com_S101_40, com_S101_41, com_S101_42,
+                          com_S101_43, com_S101_44, com_S101_45, com_S101_46, com_S101_47, com_S101_48, com_S101_49 ),
+                        c("Anzahl an Antworten (n =)", "(gar nicht)", "+", "+ +", "+ + +", "(sehr stark)"))) %>%
+  
+  tableHTML(widths  = c(280, 115, rep(90, 5)),
+            caption = 
+              "Tabelle beinhaltet die Symptome der Endometriose-kranken Frauen und <br/> wie stark diese bei den Frauen ausgepraegt sind   (Antworten in Prozent). <br/>",
+            second_headers  = list(c(1,  1,  1,   1,   1,   1,   1),
+                                   c("", "", "1", "2", "3", "4", "5"))) %>%
+  add_css_second_header(css = list(c('height', 'background-color', 'font-size'),
+                                   c('30px',   '#e6e6e6',          '20px')), second_headers = 1:7) %>%
+  add_css_header(       css = list(c('height', 'background-color', 'font-size'),
+                                   c('30px',   '#e6e6e6',          '15px')), headers = 1:7) %>%
+
+  add_css_row(      css = list('height',           '35px'),    rows = 3:51 )   %>%
+  add_css_column(   css = list('text-align',       'center'),  columns = 1:6)  %>%
+  add_css_column(   css = list('background-color', '#add68d'), columns = 2)    %>%
+  add_css_column(   css = list('background-color', '#f5f18c'), columns = 3)    %>%
+  add_css_column(   css = list('background-color', '#e8c779'), columns = 4)    %>%
+  add_css_column(   css = list('background-color', '#e89e79'), columns = 5)    %>%
+  add_css_column(   css = list('background-color', '#d46e6e'), columns = 6)    %>%
+  
+  add_css_second_header( css = list('border-right', '1px solid black'), second_header = 2)  %>%
+  add_css_header(        css = list('border-right', '1px solid black'), header = 2)  %>%
+  add_css_column(        css = list('border-right', '1px solid black'), columns = c('Anzahl an Antworten (n =)')) 
+
+# ---------------------
+# ---------------------
+
+
+forPlot <- data.frame(createdTab[,lik])
+mytitle <- 
+  "Tabelle beinhaltet die Symptome der Endometriose-kranken Frauen und \n wie stark diese bei den Frauen ausgepraegt sind   (Antworten in Prozent)."
+mylevels          <- c("(gar nicht)", "+", "+ +", "+ + +", "(sehr stark)")
+colnames(forPlot) <- mylevels
+
+
+com_S101_02 <- str_replace_all(com_S101_02, "ss", "ß")
+com_S101_03 <- str_replace_all(com_S101_03, "ue", "ü")
+
+com_S101_12 <- str_replace_all(com_S101_12, "ue", "ü")
+com_S101_14 <- str_replace_all(com_S101_14, "oe", "ö")
+com_S101_15 <- str_replace_all(com_S101_15, "ae", "ä")
+com_S101_17 <- str_replace_all(com_S101_17, "ae", "ä")
+com_S101_18 <- str_replace_all(com_S101_18, "ae", "ä")
+com_S101_19 <- str_replace_all(com_S101_19, "ae", "ä")
+com_S101_20 <- str_replace_all(com_S101_20, "ae", "ä")
+
+com_S101_21 <- str_replace_all(com_S101_21, "Ue", "Ü")
+com_S101_24 <- str_replace_all(com_S101_24, "ss", "ß")
+com_S101_26 <- str_replace_all(com_S101_26, "ae", "ä")
+com_S101_29 <- str_replace_all(com_S101_29, "oe", "ö")
+
+com_S101_30 <- str_replace_all(com_S101_30, "ae", "ä")
+com_S101_36 <- str_replace_all(com_S101_36, "ue", "ü")
+com_S101_37 <- str_replace_all(com_S101_37, "ae", "ä")
+com_S101_38 <- str_replace_all(com_S101_38, "ae", "ä")
+com_S101_38 <- str_replace_all(com_S101_38, "ue", "ü")
+
+com_S101_42 <- str_replace_all(com_S101_42, "ss", "ß")
+com_S101_43 <- str_replace_all(com_S101_43, "ue", "ü")
+
+
+com_S101_01 <- paste( com_S101_01, "\n", "* (n =", sum(table(ds$S101_01)[lik]), ") \t \t \t" )
+com_S101_02 <- paste( com_S101_02, "\n", "(n =", sum(table(ds$S101_02)[lik]), ") \t \t \t" )
+com_S101_03 <- paste( com_S101_03, "\n", "(n =", sum(table(ds$S101_03)[lik]), ") \t \t \t" )
+com_S101_04 <- paste( com_S101_04, "\n", "(n =", sum(table(ds$S101_04)[lik]), ") \t \t \t" )
+com_S101_05 <- paste( com_S101_05, "\n", "(n =", sum(table(ds$S101_05)[lik]), ") \t \t \t" )
+com_S101_06 <- paste( com_S101_06, "\n", "(n =", sum(table(ds$S101_06)[lik]), ") \t \t \t" )
+com_S101_07 <- paste( com_S101_07, "\n", "(n =", sum(table(ds$S101_07)[lik]), ") \t \t \t" )
+com_S101_08 <- paste( com_S101_08, "\n", "(n =", sum(table(ds$S101_08)[lik]), ") \t \t \t" )
+com_S101_09 <- paste( com_S101_09, "\n", "(n =", sum(table(ds$S101_09)[lik]), ") \t \t \t" )
+com_S101_10 <- paste( com_S101_10, "\n", "(n =", sum(table(ds$S101_10)[lik]), ") \t \t \t" )
+
+com_S101_11 <- paste( com_S101_11, "\n", "(n =", sum(table(ds$S101_11)[lik]), ") \t \t \t" )
+com_S101_12 <- paste( com_S101_12, "\n", "(n =", sum(table(ds$S101_12)[lik]), ") \t \t \t" )
+com_S101_13 <- paste( com_S101_13, "\n", "(n =", sum(table(ds$S101_13)[lik]), ") \t \t \t" )
+com_S101_14 <- paste( com_S101_14, "\n", "(n =", sum(table(ds$S101_14)[lik]), ") \t \t \t" )
+com_S101_15 <- paste( com_S101_15, "\n", "(n =", sum(table(ds$S101_15)[lik]), ") \t \t \t" )
+com_S101_16 <- paste( com_S101_16, "\n", "(n =", sum(table(ds$S101_16)[lik]), ") \t \t \t" )
+com_S101_17 <- paste( com_S101_17, "\n", "(n =", sum(table(ds$S101_17)[lik]), ") \t \t \t" )
+com_S101_18 <- paste( com_S101_18, "\n", "(n =", sum(table(ds$S101_18)[lik]), ") \t \t \t" )
+com_S101_19 <- paste( com_S101_19, "\n", "(n =", sum(table(ds$S101_19)[lik]), ") \t \t \t" )
+com_S101_20 <- paste( com_S101_20, "\n", "(n =", sum(table(ds$S101_20)[lik]), ") \t \t \t" )
+
+com_S101_21 <- paste( com_S101_21, "\n", "(n =", sum(table(ds$S101_21)[lik]), ") \t \t \t" )
+com_S101_22 <- paste( com_S101_22, "\n", "(n =", sum(table(ds$S101_22)[lik]), ") \t \t \t" )
+com_S101_23 <- paste( com_S101_23, "\n", "(n =", sum(table(ds$S101_23)[lik]), ") \t \t \t" )
+com_S101_24 <- paste( com_S101_24, "\n", "(n =", sum(table(ds$S101_24)[lik]), ") \t \t \t" )
+com_S101_25 <- paste( com_S101_25, "\n", "(n =", sum(table(ds$S101_25)[lik]), ") \t \t \t" )
+com_S101_26 <- paste( com_S101_26, "\n", "(n =", sum(table(ds$S101_26)[lik]), ") \t \t \t" )
+com_S101_27 <- paste( com_S101_27, "\n", "(n =", sum(table(ds$S101_27)[lik]), ") \t \t \t" )
+com_S101_28 <- paste( com_S101_28, "\n", "(n =", sum(table(ds$S101_28)[lik]), ") \t \t \t" )
+com_S101_29 <- paste( com_S101_29, "\n", "(n =", sum(table(ds$S101_29)[lik]), ") \t \t \t" )
+com_S101_30 <- paste( com_S101_30, "\n", "(n =", sum(table(ds$S101_30)[lik]), ") \t \t \t" )
+
+com_S101_31 <- paste( com_S101_31, "\n", "(n =", sum(table(ds$S101_31)[lik]), ") \t \t \t" )
+com_S101_32 <- paste( com_S101_32, "\n", "(n =", sum(table(ds$S101_32)[lik]), ") \t \t \t" )
+com_S101_33 <- paste( com_S101_33, "\n", "(n =", sum(table(ds$S101_33)[lik]), ") \t \t \t" )
+com_S101_34 <- paste( com_S101_34, "\n", "(n =", sum(table(ds$S101_34)[lik]), ") \t \t \t" )
+com_S101_35 <- paste( com_S101_35, "\n", "(n =", sum(table(ds$S101_35)[lik]), ") \t \t \t" )
+com_S101_36 <- paste( com_S101_36, "\n", "(n =", sum(table(ds$S101_36)[lik]), ") \t \t \t" )
+com_S101_37 <- paste( com_S101_37, "\n", "(n =", sum(table(ds$S101_37)[lik]), ") \t \t \t" )
+com_S101_38 <- paste( com_S101_38, "\n", "(n =", sum(table(ds$S101_38)[lik]), ") \t \t \t" )
+com_S101_39 <- paste( com_S101_39, "\n", "(n =", sum(table(ds$S101_39)[lik]), ") \t \t \t" )
+com_S101_40 <- paste( com_S101_40, "\n", "(n =", sum(table(ds$S101_40)[lik]), ") \t \t \t" )
+
+com_S101_41 <- paste( com_S101_41, "\n", "(n =", sum(table(ds$S101_41)[lik]), ") \t \t \t" )
+com_S101_42 <- paste( com_S101_42, "\n", "(n =", sum(table(ds$S101_42)[lik]), ") \t \t \t" )
+com_S101_43 <- paste( com_S101_43, "\n", "(n =", sum(table(ds$S101_43)[lik]), ") \t \t \t" )
+com_S101_44 <- paste( com_S101_44, "\n", "(n =", sum(table(ds$S101_44)[lik]), ") \t \t \t" )
+com_S101_45 <- paste( com_S101_45, "\n", "(n =", sum(table(ds$S101_45)[lik]), ") \t \t \t" )
+com_S101_46 <- paste( com_S101_46, "\n", "(n =", sum(table(ds$S101_46)[lik]), ") \t \t \t" )
+com_S101_47 <- paste( com_S101_47, "\n", "(n =", sum(table(ds$S101_47)[lik]), ") \t \t \t" )
+com_S101_48 <- paste( com_S101_48, "\n", "(n =", sum(table(ds$S101_48)[lik]), ") \t \t \t" )
+com_S101_49 <- paste( com_S101_49, "\n", "(n =", sum(table(ds$S101_49)[2:5]), ") \t \t \t" )
+
+
+forPlot <- forPlot %>%
+  mutate( Symptome = c(com_S101_01, com_S101_02, com_S101_03, com_S101_04, com_S101_05, com_S101_06, com_S101_07,
+                       com_S101_08, com_S101_09, com_S101_10, com_S101_11, com_S101_12, com_S101_13, com_S101_14,
+                       com_S101_15, com_S101_16, com_S101_17, com_S101_18, com_S101_19, com_S101_20, com_S101_21,
+                       com_S101_22, com_S101_23, com_S101_24, com_S101_25, com_S101_26, com_S101_27, com_S101_28,
+                       com_S101_29, com_S101_30, com_S101_31, com_S101_32, com_S101_33, com_S101_34, com_S101_35,
+                       com_S101_36, com_S101_37, com_S101_38, com_S101_39, com_S101_40, com_S101_41, com_S101_42,
+                       com_S101_43, com_S101_44, com_S101_45, com_S101_46, com_S101_47, com_S101_48, com_S101_49 ) ) %>%
+  select( c("Symptome", "(gar nicht)":"(sehr stark)") )
+
+
+forPlot_long          <- pivot_longer(forPlot,          "(gar nicht)":"(sehr stark)")
+forPlot_long$name     <- factor( forPlot_long$name,     levels = c("(sehr stark)", "+ + +", "+ +", "+", "(gar nicht)") )
+forPlot_long$Symptome <- factor( forPlot_long$Symptome, levels = 
+                                   c(com_S101_49, com_S101_48, com_S101_47, com_S101_46, com_S101_45, com_S101_44, com_S101_43,
+                                     com_S101_42, com_S101_41, com_S101_40, com_S101_39, com_S101_38, com_S101_37, com_S101_36,
+                                     com_S101_35, com_S101_34, com_S101_33, com_S101_32, com_S101_31, com_S101_30, com_S101_29,
+                                     com_S101_28, com_S101_27, com_S101_26, com_S101_25, com_S101_24, com_S101_23, com_S101_22,
+                                     com_S101_21, com_S101_20, com_S101_19, com_S101_18, com_S101_17, com_S101_16, com_S101_15,
+                                     com_S101_14, com_S101_13, com_S101_12, com_S101_11, com_S101_10, com_S101_09, com_S101_08,
+                                     com_S101_07, com_S101_06, com_S101_05, com_S101_04, com_S101_03, com_S101_02, com_S101_01) )
+colo <- c("#add68d", "#f5f18c", "#e8c779", "#e89e79", "#d46e6e")
+
+
+forPlot_long <-
+  forPlot_long %>% 
+  mutate( my_label = ifelse(value > 0.80, paste0(value, " %"), "") )
+
+ggplot( forPlot_long, aes(x = Symptome, y = value, fill = name) ) +
+  geom_bar( stat     = "identity", 
+            position = "stack", 
+            alpha    = .9, 
+            width    = 0.80 ) +
+  geom_text( aes(label = my_label), 
+             position = "stack", 
+             vjust    = 0, 
+             size     = 3.8, 
+             angle    = 90 ) +
+  coord_flip() +
+  scale_fill_manual( values = c("(sehr stark)" = "#d46e6e",
+                                "+ + +"        = "#e89e79",
+                                "+ +"          = "#e8c779",
+                                "+"            = "#f5f18c",
+                                "(gar nicht)"  = "#add68d"),
+                     guide = guide_legend(reverse = TRUE, title = "Ausprägung der Symptome") ) +
+  theme( legend.position = "bottom",
+         text         = element_text(size = 13),
+         axis.title.x = element_text(size = 15),
+         axis.title.y = element_text(size = 15),
+         axis.text.x  = element_text(size = 12),
+         axis.text.y  = element_text(size = 12) ) +
+  labs( y = "Prozente", 
+        x = "Symptome der Endometriose-kranken Frauen", 
+        caption = "* (n =) Anzahl an Antworten" ) +
+  ggtitle("Grafik beinhaltet die Symptome der Endometriose-kranken Frauen und \n wie stark diese bei den Frauen ausgeprägt sind.") +
+  theme( plot.title = element_text(hjust = 0.5) )
+
+
+ggsave("X:/symptome/Symptome.pdf", width = 40, height = 100, units = "cm")
+ggsave("X:/symptome/Symptome.png", width = 40, height = 100, units = "cm")
