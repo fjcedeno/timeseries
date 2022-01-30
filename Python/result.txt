@@ -1,0 +1,1095 @@
+  Reading input spec file from C:\Users\nando\AppData\Local\Temp\tmpz5u1ctka.spc
+
+1
+
+               U. S. Department of Commerce, U. S. Census Bureau
+
+              X-13ARIMA-SEATS monthly seasonal adjustment Method,
+                          Release Version 1.1 Build 57
+
+
+           This software application provides an enhanced version of
+             Statistics Canada's X-11-ARIMA extension (Dagum, 1980)
+                 of the X-11 variant of the Census Method II of
+                      Shiskin, Young and Musgrave (1967).
+
+            It also provides an ARIMA model-based method following
+       Hillmer and Tiao (1982) and Burman (1980) that is very similar
+       to the update of the method of SEATS (Gomez and Maravall, 1996)
+                produced at the Bank of Spain by G. Caporello and
+               A. Maravall for TSW (Caporello and Maravall, 2004).
+          The present application includes additional enhancements.
+
+         X-13ARIMA-SEATS includes an automatic ARIMA model selection procedure
+          based largely on the procedure of Gomez and Maravall (1998)
+            as implemented in TRAMO (1996) and subsequent revisions.
+
+              Primary Programmers: Brian Monsell, Mark Otto and,
+                 for the ARIMA model-based signal extraction,
+                      Gianluca Caporello and Victor Gomez
+
+
+     Series Title- ApparelCPI
+     Series Name- ApparelCPI
+     Jan 29, 2022  18.07.39 
+
+        -Period covered-  1st month,2017 to 12th month,2021
+        -Type of run - auto-mode seasonal adjustment
+
+        -Sigma limits for graduating extreme values are  1.5 and  2.5 .
+        -3x3 moving average used in section 1 of each iteration, 
+         3x5 moving average in section 2 of iterations B and C,
+         moving average for final seasonal factors chosen by Global MSR.
+        -Spectral plots generated for selected series
+
+ FILE SAVE REQUESTS (* indicates file exists and will be overwritten)
+  C:\Users\nando\AppData\Local\Temp\tmpd3c3jpzc.d11  final seasonally adjusted data
+  C:\Users\nando\AppData\Local\Temp\tmpd3c3jpzc.d12  final trend cycle
+  C:\Users\nando\AppData\Local\Temp\tmpd3c3jpzc.d13  final irregular component
+  C:\Users\nando\AppData\Local\Temp\tmpd3c3jpzc.out  program output file
+  C:\Users\nando\AppData\Local\Temp\tmpd3c3jpzc.err  program error file
+        ApparelCPI            PAGE   1, SERIES ApparelCPI
+
+     Contents of spc file C:\Users\nando\AppData\Local\Temp\tmpz5u1ctka.spc
+
+ Line #
+ ------
+      1: Series {
+      2:         data=(123.088
+      3: 126.1
+      4: 128.25
+      5: 128.349
+      6: 126.563
+      7: 124.63
+      8: 122.485
+      9: 124.147
+     10: 128.15
+     11: 129.57
+     12: 125.398
+     13: 120.614
+     14: 122.266
+     15: 126.587
+     16: 128.604
+     17: 129.365
+     18: 128.362
+     19: 125.382
+     20: 122.831
+     21: 122.447
+     22: 127.44
+     23: 129.108
+     24: 124.935
+     25: 120.526
+     26: 122.422
+     27: 125.631
+     28: 125.785
+     29: 125.542
+     30: 124.429
+     31: 123.749
+     32: 122.161
+     33: 123.641
+     34: 127.009
+     35: 126.154
+     36: 122.986
+     37: 119.111
+     38: 120.853
+     39: 124.438
+     40: 123.815
+     41: 118.394
+     42: 114.582
+     43: 114.734
+     44: 114.267
+     45: 116.299
+     46: 119.354
+     47: 119.172
+     48: 116.602
+     49: 114.434
+     50: 117.785
+     51: 119.998
+     52: 120.746
+     53: 120.656
+     54: 120.951
+     55: 120.324
+     56: 119.078
+     57: 121.194
+     58: 123.406
+     59: 124.323
+     60: 122.383
+     61: 121.068)
+     62: appendbcst=no
+     63: appendfcst=no
+     64: period=12
+     65: start=2017.1
+     66: title="ApparelCPI"
+     67: name="ApparelCPI"
+     68:  
+     69:         }
+     70:         transform{function=auto}
+     71: outlier{}
+     72: automdl{
+     73: maxorder = (2 1)
+     74: maxdiff = (2 1)
+     75: }
+     76: x11{ save=(d11 d12 d13) }
+
+
+ Likelihood statistics for model fit to untransformed series.
+
+ Likelihood Statistics
+ ------------------------------------------------------------------
+ Number of observations (nobs)                                   60
+ Effective number of observations (nefobs)                       47
+ Number of parameters estimated (np)                              3
+ Log likelihood (L)                                        -81.6245
+ AIC                                                       169.2491 
+ AICC (F-corrected-AIC)                                    169.8072 
+ Hannan Quinn                                              171.3377 
+ BIC                                                       174.7995 
+ ------------------------------------------------------------------
+
+
+ Likelihood statistics for model fit to log transformed series.
+
+ Likelihood Statistics
+ ------------------------------------------------------------------
+ Number of observations (nobs)                                   60
+ Effective number of observations (nefobs)                       47
+ Number of parameters estimated (np)                              3
+ Log likelihood                                            144.3583
+ Transformation Adjustment                                -225.8384
+ Adjusted Log likelihood (L)                               -81.4801
+ AIC                                                       168.9602 
+ AICC (F-corrected-AIC)                                    169.5183 
+ Hannan Quinn                                              171.0489 
+ BIC                                                       174.5106 
+ ------------------------------------------------------------------
+
+
+   *****   AICC (with aicdiff=-2.00) prefers log transformation   *****
+   *****   Multiplicative seasonal adjustment will be performed.   ****
+
+
+
+        ApparelCPI            PAGE   2, SERIES ApparelCPI
+
+ A 1  Time series data (for the span analyzed)
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2017         123.     126.     128.     128.     127.     125.
+               122.     124.     128.     130.     125.     121.         1507.
+ 
+  2018         122.     127.     129.     129.     128.     125.
+               123.     122.     127.     129.     125.     121.         1508.
+ 
+  2019         122.     126.     126.     126.     124.     124.
+               122.     124.     127.     126.     123.     119.         1489.
+ 
+  2020         121.     124.     124.     118.     115.     115.
+               114.     116.     119.     119.     117.     114.         1417.
+ 
+  2021         118.     120.     121.     121.     121.     120.
+               119.     121.     123.     124.     122.     121.         1452.
+ 
+  AVGE         121.     125.     125.     124.     123.     122.
+               120.     122.     125.     126.     122.     119.
+
+  Table Total-      7372.67   Mean-     122.88   Std. Dev.-       3.94
+                              Min -     114.27        Max -     129.57
+        ApparelCPI            PAGE   3, SERIES ApparelCPI
+                        Automatic ARIMA Model Selection
+
+                    Procedure based closely on TRAMO method 
+                         of Gomez and Maravall (2000)
+              "Automatic Modeling Methods for Univariate Series",
+                            A Course in Time Series
+                  (Edited by D. Pena, G. C. Tiao, R. S. Tsay),
+                         New York : J. Wiley and Sons
+
+
+     Maximum order for regular ARMA parameters :   2
+     Maximum order for seasonal ARMA parameters :   1
+     Maximum order for regular differencing :   2
+     Maximum order for seasonal differencing :   1
+
+   Results of Unit Root Test for identifying orders of differencing:
+     Regular difference order :   0
+     Seasonal difference order :   0
+
+  Automatic model choice : (1 0 1)(1 0 0)
+
+
+  Final Checks for Identified Model
+
+
+  Checking for Unit Roots.
+   No unit roots found.
+   Nonseasonal MA not within  0.001 of 1.0 - model passes test.
+
+  Checking for insignificant ARMA coefficients.
+
+  Final automatic model choice : (1 0 1)(1 0 0)
+   End of automatic model selection procedure.
+
+ Average absolute percentage error in within-sample forecasts:
+  Last year:   2.52      Last-1 year:   4.52     Last-2 year:   0.90
+  Last three years:    2.65
+
+ Estimation converged in   16 ARMA iterations,   83 function evaluations.
+
+ Regression Model
+ ------------------------------------------------------------------------------
+                             Parameter        Standard
+ Variable                     Estimate           Error      t-value
+ ------------------------------------------------------------------------------
+ Constant                       4.8170         0.02512       191.79
+ ------------------------------------------------------------------------------
+
+
+ ARIMA Model:  (1 0 1)(1 0 0)
+                                              Standard
+ Parameter                    Estimate          Errors
+ -----------------------------------------------------
+ Nonseasonal AR                                    
+   Lag  1                       0.7957         0.07527
+
+ Seasonal AR                                       
+   Lag 12                       0.6721         0.08737
+
+ Nonseasonal MA                                    
+   Lag  1                      -0.7063         0.09346
+
+ Variance                       0.11458E-03
+ SE of Var                      0.20919E-04
+ -----------------------------------------------------
+
+ Likelihood Statistics
+ ------------------------------------------------------------------
+ Number of observations (nobs)                                   60
+ Effective number of observations (nefobs)                       60
+ Number of parameters estimated (np)                              5
+ Log likelihood                                            182.1599
+ Transformation Adjustment                                -288.6404
+ Adjusted Log likelihood (L)                              -106.4805
+ AIC                                                       222.9610 
+ AICC (F-corrected-AIC)                                    224.0721 
+ Hannan Quinn                                              227.0571 
+ BIC                                                       233.4328 
+ ------------------------------------------------------------------
+
+ QS Statistic for regARIMA Model Residuals (full series):             0.00
+                                                       (P-Value =     1.0000)
+
+ QS Statistic for regARIMA Model Residuals (starting 2017.Jan):       0.00
+                                                       (P-Value =     1.0000)
+
+
+  At least one visually significant residual seasonal peaks has been
+  found in the spectral plot of the following series starting in 2017.Jan:
+
+          regARIMA model residuals (1 Seasonal peak(s))
+
+      10*LOG(SPECTRUM) of the regARIMA model residuals
+      Spectrum estimated from 2017.Jan to 2021.Dec.
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -30.29I                                                    T        I    -30.29
+           I                                                    T        I
+           I                                                    T        I
+           I                                                    T        I
+     -31.84I                                                    T        I    -31.84
+           I                                                    T        I
+           I                                                    T        I
+           I                                                    T        I
+     -33.39I                                                    T        I    -33.39
+           I                *                                   T        I
+           I                *   S                               T        I
+           I                *   S                               T        I
+     -34.94I                *   S                               T        I    -34.94
+           I   *            *   S                               T        I
+           I   *            *   S               *               T        I
+           I   *            **  S               *               T*       I
+     -36.49I   *            **  S               *               T*       I    -36.49
+           I   *            **  S*              *               T*       I
+           I  **            **  S*              *               T*       I
+           I  **  *         **  S*             **               T***     I
+     -38.04I  **  *         **  S*      *      **      *        T***     I    -38.04
+           I  **  *         ** *S*      **     **      *        T***     I
+           I  *** *         ** *S*      **     **      *        T***     I
+           I  *****         ** *S*  **  **     **      *       *T***     I
+     -39.60I  *****         ****S*  **  **     **      *       *T***    SI    -39.60
+           I  *****         ****S*  ** ***     **      *       *T***    SI
+           I  *****         ****S*********     **      *       *T***    SI
+           I  *****         ****S*********S   ***      *       *T***    SI
+     -41.15I  *****         ****S*********S  ****      *       *T***    SI    -41.15
+           I ******         ****S*********S *****      *       *T***    SI
+           I *******       *****S*********S******      *       *T***    SI
+           I *******       *****S*********S******      *       *T***    SI
+     -42.70I *******       *****S*********S******      *       *T****   SI    -42.70
+           I********       *****S*********S******      *       *T****   SI
+           I********       *****S*********S*******     *      S*T****  *SI
+           I********       *****S*********S*******     *      S*T****  *SI
+     -44.25I********       *****S*********S*******     *      S*T****  *SI    -44.25
+           I********       *****S*********S*******     *      S*T****  *SI
+           I********       *****S*********S*******    T*      S*T****  *SI
+           I********       *****S*********S*******    T*     *S*T****  *SI
+     -45.80I********      ******S*********S*******    T**    *S*T***** *SI    -45.80
+           I********      ******S*********S*******    T**    *S*T*******SI
+           I*********     ******S*********S*******    T**   **S*T*******SI
+           I*********     ******S*********S*******    T**   **S*T*******SI
+     -47.35I*********     ******S*********S*******    T**   **S*T*******SI    -47.35
+           I*********    *******S*********S*******    T**   **S*T*******SI
+           I*********    *******S*********S********   T**  ***S*T*******SI
+           I*********    *******S*********S********   T**  ***S*T*******SI
+     -48.90I*********   ********S*********S********   T*** ***S*T*******SI    -48.90
+           I**********  ********S*********S********  *T*******S*T*******SI
+           I********** *********S*********S********  *T*******S*T*******SI
+           I**********S*********S*********S********  *T*******S*T*******SI
+     -50.45I**********S*********S*********S*********S*T*******S*T*******SI    -50.45
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES
+
+
+ FORECASTING
+  Origin  2021.Dec
+  Number        12
+
+  Forecasts and Standard Errors of the Transformed Data
+   ------------------------------
+                         Standard
+       Date   Forecast      Error
+   ------------------------------
+   2022.Jan       4.82      0.011
+   2022.Feb       4.82      0.019
+   2022.Mar       4.82      0.023
+   2022.Apr       4.82      0.026
+   2022.May       4.82      0.027
+   2022.Jun       4.81      0.028
+   2022.Jul       4.80      0.029
+   2022.Aug       4.81      0.029
+   2022.Sep       4.82      0.029
+   2022.Oct       4.83      0.029
+   2022.Nov       4.81      0.029
+   2022.Dec       4.81      0.030
+   ------------------------------
+
+  Confidence intervals with coverage probability ( 0.95000
+  On the Original Scale
+   ---------------------------------------
+       Date      Lower  Forecast     Upper
+   ---------------------------------------
+   2022.Jan     120.98    123.55    126.18
+   2022.Feb     119.64    124.29    129.13
+   2022.Mar     118.59    124.17    130.01
+   2022.Apr     117.52    123.59    129.98
+   2022.May     117.00    123.39    130.12
+   2022.Jun     116.09    122.63    129.55
+   2022.Jul     114.91    121.53    128.52
+   2022.Aug     116.00    122.77    129.93
+   2022.Sep     117.21    124.11    131.41
+   2022.Oct     117.63    124.59    131.97
+   2022.Nov     116.27    123.18    130.50
+   2022.Dec     115.33    122.21    129.49
+   ---------------------------------------
+        ApparelCPI            PAGE   4, SERIES ApparelCPI
+
+ B 1  Original series (prior adjusted)
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2017         123.     126.     128.     128.     127.     125.
+               122.     124.     128.     130.     125.     121.         1507.
+ 
+  2018         122.     127.     129.     129.     128.     125.
+               123.     122.     127.     129.     125.     121.         1508.
+ 
+  2019         122.     126.     126.     126.     124.     124.
+               122.     124.     127.     126.     123.     119.         1489.
+ 
+  2020         121.     124.     124.     118.     115.     115.
+               114.     116.     119.     119.     117.     114.         1417.
+ 
+  2021         118.     120.     121.     121.     121.     120.
+               119.     121.     123.     124.     122.     121.         1452.
+ 
+  AVGE         121.     125.     125.     124.     123.     122.
+               120.     122.     125.     126.     122.     119.
+
+  Table Total-      7372.67   Mean-     122.88   Std. Dev.-       3.94
+                              Min -     114.27        Max -     129.57
+
+ B 1.A  Forecasts of (prior adjusted) original series
+  From  2022.Jan to 2022.Dec
+  Observations         12
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2022         124.     124.     124.     124.     123.     123.
+               122.     123.     124.     125.     123.     122.         1480.
+ 
+        ApparelCPI            PAGE   5, SERIES ApparelCPI
+
+ C 17  Final weights for irregular component
+  From  2017.Jan to 2021.Dec
+  Observations         60
+  Lower sigma limit    1.50
+  Upper sigma limit    2.50
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         S.D.  
+ -----------------------------------------------------------------------------
+  2017        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0      0.0    100.0    100.0           0.4
+ 
+  2018          0.0    100.0    100.0     89.9     45.9    100.0
+              100.0      0.0    100.0      0.0    100.0    100.0           0.4
+ 
+  2019        100.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0           0.4
+ 
+  2020        100.0      0.0      0.0    100.0      0.0    100.0
+              100.0    100.0    100.0    100.0    100.0    100.0           0.4
+ 
+  2021         88.0    100.0    100.0    100.0    100.0    100.0
+              100.0    100.0    100.0    100.0    100.0     79.0           0.4
+ 
+        ApparelCPI            PAGE   6, SERIES ApparelCPI
+
+ D 8  Final unmodified SI ratios
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017         98.5    100.5    101.9    101.8    100.4     99.2
+               97.7     99.0    102.2    103.3    100.1     96.4         100.1
+ 
+  2018         97.6    100.6    101.6    101.8    101.1     99.1
+               97.6     97.7    101.9    103.3    100.2     96.8          99.9
+ 
+  2019         98.5    101.2    101.4    101.1    100.0     99.3
+               97.9     99.2    102.2    102.0     99.9     97.2         100.0
+ 
+  2020         99.3    103.1    103.7    100.3     97.9     98.4
+               98.0     99.6    102.1    101.9     99.6     97.5         100.1
+ 
+  2021         99.8    101.1    101.1    100.4    100.1     99.2
+               98.0     99.7    101.3    101.8     99.8     98.4         100.1
+ 
+  AVGE         98.7    101.3    101.9    101.1     99.9     99.0
+               97.8     99.0    101.9    102.5     99.9     97.3
+
+  Table Total-      6002.26   Mean-     100.04   Std. Dev.-       1.77
+                              Min -      96.38        Max -     103.70
+        ApparelCPI            PAGE   7, SERIES ApparelCPI
+
+ D 8.B  Final unmodified SI ratios, with labels for outliers and extreme values
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ ---------------------------------------------------------------------
+               Jan       Feb       Mar       Apr       May       Jun  
+               Jul       Aug       Sep       Oct       Nov       Dec  
+ ---------------------------------------------------------------------
+  2017        98.5     100.5     101.9     101.8     100.4      99.2  
+              97.7      99.0     102.2     103.3*    100.1      96.4  
+ 
+  2018        97.6*    100.6     101.6     101.8*    101.1*     99.1  
+              97.6      97.7*    101.9     103.3*    100.2      96.8  
+ 
+  2019        98.5     101.2     101.4     101.1     100.0      99.3  
+              97.9      99.2     102.2     102.0      99.9      97.2  
+ 
+  2020        99.3     103.1*    103.7*    100.3      97.9*     98.4  
+              98.0      99.6     102.1     101.9      99.6      97.5  
+ 
+  2021        99.8*    101.1     101.1     100.4     100.1      99.2  
+              98.0      99.7     101.3     101.8      99.8      98.4* 
+ 
+
+  Key to symbols:
+    *  : extreme value as determined by X-11 extreme value procedure
+ 
+        ApparelCPI            PAGE   8, SERIES ApparelCPI
+
+ D 9  Final replacement values for SI ratios
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ ---------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec 
+ ---------------------------------------------------------------
+  2017     ******** ******** ******** ******** ******** ********
+           ******** ******** ********    102.4 ******** ********
+ 
+  2018         98.5 ******** ********    101.8    100.7 ********
+           ********     99.3 ********    102.2 ******** ********
+ 
+  2019     ******** ******** ******** ******** ******** ********
+           ******** ******** ******** ******** ******** ********
+ 
+  2020     ********    101.2    101.6 ********    100.2 ********
+           ******** ******** ******** ******** ******** ********
+ 
+  2021         99.7 ******** ******** ******** ******** ********
+           ******** ******** ******** ******** ********     98.3
+ 
+
+ D 9.A  Moving seasonality ratio
+ ---------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+ ---------------------------------------------------------------
+   I          0.317    0.242    0.249    0.429    0.320    0.470
+   S          0.186    0.103    0.085    0.228    0.062    0.041
+ RATIO        1.699    2.340    2.913    1.885    5.183   11.430
+
+
+
+ ---------------------------------------------------------------
+               Jul      Aug      Sep      Oct      Nov      Dec 
+ ---------------------------------------------------------------
+   I          0.150    0.153    0.346    0.097    0.188    0.334
+   S          0.052    0.088    0.075    0.079    0.062    0.256
+ RATIO        2.882    1.734    4.611    1.223    3.021    1.305
+
+
+
+        ApparelCPI            PAGE   9, SERIES ApparelCPI
+
+ D 10  Final seasonal factors
+  From  2017.Jan to 2021.Dec
+  Observations         60
+  Seasonal filter    3 x 3 moving average
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017        98.50   100.65   101.66   101.63   100.45    99.18
+              97.70    99.14   102.02   102.22   100.08    96.73        100.00
+ 
+  2018        98.61   100.80   101.60   101.43   100.41    99.12
+              97.75    99.19   102.02   102.15   100.02    96.90        100.00
+ 
+  2019        98.84   100.99   101.49   101.07   100.29    99.06
+              97.84    99.30   101.97   102.03    99.91    97.23        100.00
+ 
+  2020        99.15   101.11   101.37   100.69   100.21    98.96
+              97.96    99.46   101.83   101.88    99.85    97.59        100.00
+ 
+  2021        99.37   101.14   101.24   100.48   100.12    99.00
+              98.05    99.56   101.64   101.74    99.85    97.87        100.01
+ 
+  AVGE        98.89   100.94   101.47   101.06   100.29    99.06
+              97.86    99.33   101.90   102.00    99.94    97.27
+
+  Table Total-      6000.10   Mean-     100.00   Std. Dev.-       1.50
+                              Min -      96.73        Max -     102.22
+
+ D 10.A  Final seasonal component forecasts
+  From  2022.Jan to 2022.Dec
+  Observations         12
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2022        99.47   101.11   101.16   100.42   100.09    99.03
+              98.11    99.62   101.50   101.66    99.91    98.00        100.01
+ 
+        ApparelCPI            PAGE  10, SERIES ApparelCPI
+
+ D 11  Final seasonally adjusted data
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2017         125.     125.     126.     126.     126.     126.
+               125.     125.     126.     127.     125.     125.         1507.
+ 
+  2018         124.     126.     127.     128.     128.     126.
+               126.     123.     125.     126.     125.     124.         1508.
+ 
+  2019         124.     124.     124.     124.     124.     125.
+               125.     125.     125.     124.     123.     122.         1489.
+ 
+  2020         122.     123.     122.     118.     114.     116.
+               117.     117.     117.     117.     117.     117.         1417.
+ 
+  2021         119.     119.     119.     120.     121.     122.
+               121.     122.     121.     122.     123.     124.         1452.
+ 
+  AVGE         123.     123.     124.     123.     123.     123.
+               123.     122.     123.     123.     123.     123.
+
+  Table Total-      7372.29   Mean-     122.87   Std. Dev.-       3.31
+                              Min -     114.35        Max -     127.84
+        ApparelCPI            PAGE  11, SERIES ApparelCPI
+
+ D 12  Final trend cycle
+  From  2017.Jan to 2021.Dec
+  Observations         60
+  Trend filter     9-term Henderson moving average
+  I/C ratio        0.85
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec        TOTAL  
+ -----------------------------------------------------------------------------
+  2017         125.     126.     126.     126.     126.     126.
+               125.     125.     125.     125.     125.     125.         1506.
+ 
+  2018         125.     126.     127.     127.     127.     127.
+               126.     125.     125.     125.     125.     124.         1509.
+ 
+  2019         124.     124.     124.     124.     124.     125.
+               125.     125.     124.     124.     123.     123.         1489.
+ 
+  2020         122.     121.     119.     118.     117.     116.
+               117.     117.     117.     117.     117.     117.         1415.
+ 
+  2021         118.     119.     119.     120.     121.     121.
+               122.     122.     122.     122.     123.     123.         1451.
+ 
+  AVGE         123.     123.     123.     123.     123.     123.
+               123.     123.     123.     123.     123.     122.
+
+  Table Total-      7369.86   Mean-     122.83   Std. Dev.-       3.21
+                              Min -     116.45        Max -     127.09
+        ApparelCPI            PAGE  12, SERIES ApparelCPI
+
+ D 13  Final irregular component
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         S.D.  
+ -----------------------------------------------------------------------------
+  2017         99.9     99.8    100.2    100.2    100.0    100.0
+               99.9     99.8    100.1    101.1    100.1     99.7           0.4
+ 
+  2018         99.0     99.8    100.0    100.4    100.6     99.9
+               99.8     98.5     99.8    101.2    100.2    100.0           0.7
+ 
+  2019         99.7    100.3     99.9    100.0     99.7    100.2
+              100.1     99.9    100.2     99.9     99.9     99.9           0.2
+ 
+  2020        100.1    102.0    102.3     99.7     97.8     99.6
+              100.1    100.1    100.2    100.0     99.7     99.8           1.1
+ 
+  2021        100.4     99.9     99.9    100.0    100.0    100.2
+               99.9    100.1     99.7    100.0     99.9    100.6           0.2
+ 
+  S.D.          0.5      0.9      1.1      0.2      1.0      0.2
+                0.1      0.7      0.2      0.7      0.2      0.3
+
+  Table Total-      6001.95   Mean-     100.03   Std. Dev.-       0.61
+                              Min -      97.80        Max -     102.34
+        ApparelCPI            PAGE  13, SERIES ApparelCPI
+
+ D 16  Combined adjustment factors
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017        98.50   100.65   101.66   101.63   100.45    99.18
+              97.70    99.14   102.02   102.22   100.08    96.73        100.00
+ 
+  2018        98.61   100.80   101.60   101.43   100.41    99.12
+              97.75    99.19   102.02   102.15   100.02    96.90        100.00
+ 
+  2019        98.84   100.99   101.49   101.07   100.29    99.06
+              97.84    99.30   101.97   102.03    99.91    97.23        100.00
+ 
+  2020        99.15   101.11   101.37   100.69   100.21    98.96
+              97.96    99.46   101.83   101.88    99.85    97.59        100.00
+ 
+  2021        99.37   101.14   101.24   100.48   100.12    99.00
+              98.05    99.56   101.64   101.74    99.85    97.87        100.01
+ 
+  AVGE        98.89   100.94   101.47   101.06   100.29    99.06
+              97.86    99.33   101.90   102.00    99.94    97.27
+
+  Table Total-      6000.10   Mean-     100.00   Std. Dev.-       1.50
+                              Min -      96.73        Max -     102.22
+
+ D 16.A  Combined adjustment component forecasts
+  From  2022.Jan to 2022.Dec
+  Observations         12
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2022        99.47   101.11   101.16   100.42   100.09    99.03
+              98.11    99.62   101.50   101.66    99.91    98.00        100.01
+ 
+        ApparelCPI            PAGE  14, SERIES ApparelCPI
+
+ E 4  Ratios of annual totals
+  From          2017 to 2021
+  Observations          5
+ -----------------------------------
+  Year       Unmodified     Modified
+                  (D11)         (E3)
+ -----------------------------------
+  2017           100.00       100.00
+ 
+  2018           100.01       100.00
+ 
+  2019           100.00       100.00
+ 
+  2020           100.01       100.01
+ 
+  2021           100.00       100.00
+ 
+        ApparelCPI            PAGE  15, SERIES ApparelCPI
+
+ E 5  Month-to-month percent change in the original series
+  From  2017.Feb to 2021.Dec
+  Observations         59
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017                   2.4      1.7      0.1     -1.4     -1.5
+               -1.7      1.4      3.2      1.1     -3.2     -3.8          -0.2
+ 
+  2018          1.4      3.5      1.6      0.6     -0.8     -2.3
+               -2.0     -0.3      4.1      1.3     -3.2     -3.5           0.0
+ 
+  2019          1.6      2.6      0.1     -0.2     -0.9     -0.5
+               -1.3      1.2      2.7     -0.7     -2.5     -3.2          -0.1
+ 
+  2020          1.5      3.0     -0.5     -4.4     -3.2      0.1
+               -0.4      1.8      2.6     -0.2     -2.2     -1.9          -0.3
+ 
+  2021          2.9      1.9      0.6     -0.1      0.2     -0.5
+               -1.0      1.8      1.8      0.7     -1.6     -1.1           0.5
+ 
+  AVGE          1.8      2.7      0.7     -0.8     -1.2     -1.0
+               -1.3      1.2      2.9      0.5     -2.5     -2.7
+
+  Table Total-        -0.43   Mean-      -0.01   Std. Dev.-       2.04
+                              Min -      -4.38        Max -       4.08
+        ApparelCPI            PAGE  16, SERIES ApparelCPI
+
+ E 6  Month-to-month percent change in seasonally adjusted series (D11)
+  From  2017.Feb to 2021.Dec
+  Observations         59
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017                   0.3      0.7      0.1     -0.2     -0.3
+               -0.2     -0.1      0.3      0.9     -1.1     -0.5          -0.0
+ 
+  2018         -0.6      1.3      0.8      0.8      0.2     -1.1
+               -0.7     -1.8      1.2      1.2     -1.2     -0.4          -0.0
+ 
+  2019         -0.4      0.4     -0.4      0.2     -0.1      0.7
+               -0.1     -0.3      0.0     -0.7     -0.4     -0.5          -0.1
+ 
+  2020         -0.5      1.0     -0.7     -3.7     -2.8      1.4
+                0.6      0.2      0.2     -0.2     -0.2      0.4          -0.4
+ 
+  2021          1.1      0.1      0.5      0.7      0.6      0.6
+               -0.1      0.2     -0.3      0.6      0.3      0.9           0.4
+ 
+  AVGE         -0.1      0.6      0.2     -0.4     -0.5      0.3
+               -0.1     -0.3      0.3      0.4     -0.5     -0.0
+
+  Table Total-        -0.78   Mean-      -0.01   Std. Dev.-       0.90
+                              Min -      -3.74        Max -       1.39
+        ApparelCPI            PAGE  17, SERIES ApparelCPI
+
+ E 7  Month-to-month percent change in final trend cycle (D12)
+  From  2017.Feb to 2021.Dec
+  Observations         59
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017                   0.3      0.3      0.2     -0.1     -0.2
+               -0.2     -0.0      0.0     -0.1     -0.1     -0.1          -0.0
+ 
+  2018          0.1      0.5      0.6      0.4     -0.0     -0.4
+               -0.5     -0.4     -0.2     -0.2     -0.2     -0.2          -0.0
+ 
+  2019         -0.2     -0.1     -0.0      0.1      0.2      0.2
+                0.1     -0.1     -0.3     -0.4     -0.5     -0.5          -0.1
+ 
+  2020         -0.7     -0.9     -1.1     -1.2     -0.9     -0.4
+                0.1      0.2      0.1      0.0      0.1      0.3          -0.4
+ 
+  2021          0.5      0.6      0.6      0.6      0.6      0.4
+                0.2      0.1      0.2      0.3      0.4      0.3           0.4
+ 
+  AVGE         -0.0      0.1      0.1      0.0     -0.0     -0.1
+               -0.1     -0.0     -0.0     -0.1     -0.1     -0.1
+
+  Table Total-        -1.68   Mean-      -0.03   Std. Dev.-       0.41
+                              Min -      -1.16        Max -       0.61
+        ApparelCPI            PAGE  18, SERIES ApparelCPI
+
+ E 8  Month-to-month percent change in original series adjusted for calendar factors (A18)
+  From  2017.Feb to 2021.Dec
+  Observations         59
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017                   2.4      1.7      0.1     -1.4     -1.5
+               -1.7      1.4      3.2      1.1     -3.2     -3.8          -0.2
+ 
+  2018          1.4      3.5      1.6      0.6     -0.8     -2.3
+               -2.0     -0.3      4.1      1.3     -3.2     -3.5           0.0
+ 
+  2019          1.6      2.6      0.1     -0.2     -0.9     -0.5
+               -1.3      1.2      2.7     -0.7     -2.5     -3.2          -0.1
+ 
+  2020          1.5      3.0     -0.5     -4.4     -3.2      0.1
+               -0.4      1.8      2.6     -0.2     -2.2     -1.9          -0.3
+ 
+  2021          2.9      1.9      0.6     -0.1      0.2     -0.5
+               -1.0      1.8      1.8      0.7     -1.6     -1.1           0.5
+ 
+  AVGE          1.8      2.7      0.7     -0.8     -1.2     -1.0
+               -1.3      1.2      2.9      0.5     -2.5     -2.7
+
+  Table Total-        -0.43   Mean-      -0.01   Std. Dev.-       2.04
+                              Min -      -4.38        Max -       4.08
+        ApparelCPI            PAGE  19, SERIES ApparelCPI
+
+ E 18  Final adjustment ratios
+  From  2017.Jan to 2021.Dec
+  Observations         60
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2017         98.5    100.6    101.7    101.6    100.5     99.2
+               97.7     99.1    102.0    102.2    100.1     96.7         100.0
+ 
+  2018         98.6    100.8    101.6    101.4    100.4     99.1
+               97.8     99.2    102.0    102.1    100.0     96.9         100.0
+ 
+  2019         98.8    101.0    101.5    101.1    100.3     99.1
+               97.8     99.3    102.0    102.0     99.9     97.2         100.0
+ 
+  2020         99.2    101.1    101.4    100.7    100.2     99.0
+               98.0     99.5    101.8    101.9     99.8     97.6         100.0
+ 
+  2021         99.4    101.1    101.2    100.5    100.1     99.0
+               98.1     99.6    101.6    101.7     99.9     97.9         100.0
+ 
+  AVGE         98.9    100.9    101.5    101.1    100.3     99.1
+               97.9     99.3    101.9    102.0     99.9     97.3
+
+  Table Total-      6000.10   Mean-     100.00   Std. Dev.-       1.50
+                              Min -      96.73        Max -     102.22
+
+ E 18.A  Final adjustment ratio forecasts
+  From  2022.Jan to 2022.Dec
+  Observations         12
+ -----------------------------------------------------------------------------
+               Jan      Feb      Mar      Apr      May      Jun 
+               Jul      Aug      Sep      Oct      Nov      Dec         AVGE  
+ -----------------------------------------------------------------------------
+  2022         99.5    101.1    101.2    100.4    100.1     99.0
+               98.1     99.6    101.5    101.7     99.9     98.0         100.0
+ 
+
+  QS statistic for seasonality:
+  Original Series                                    50.06  (P-Value =     0.0000)
+  Original Series (EV adj)                           50.06  (P-Value =     0.0000)
+  Residuals                                           0.00  (P-Value =     1.0000)
+  Seasonally Adjusted Series                          0.19  (P-Value =     0.9114)
+  Seasonally Adjusted Series (EV adj)                 0.00  (P-Value =     1.0000)
+  Irregular Series                                    0.67  (P-Value =     0.7145)
+  Irregular Series (EV adj)                           0.00  (P-Value =     1.0000)
+
+  QS statistic for seasonality (starting 2017.Jan):
+  Residuals                                           0.00  (P-Value =     1.0000)
+        ApparelCPI            PAGE  20, SERIES ApparelCPI
+ G 0  10*LOG(SPECTRUM) of the differenced, transformed Original Series
+      (Table A1 or B1).  Spectrum estimated from 2017.Jan to 2021.Dec.
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -20.89I                    S                                        I    -20.89
+           I                    S                                        I
+           I                    S                                        I
+           I                    S                                        I
+     -23.50I                    S                                        I    -23.50
+           I                    S                                        I
+           I                    S*        S                              I
+           I                    S*        S                              I
+     -26.11I                    S*        S                              I    -26.11
+           I                    S*        S                              I
+           I                    S*        S                              I
+           I                    S*        S                              I
+     -28.72I                    S*        S                              I    -28.72
+           I                 * *S*        S                              I
+           I                 * *S*        S                              I
+           I                 * *S*        S*                             I
+     -31.33I                 ***S**      *S*                             I    -31.33
+           I                 ***S**      *S*                             I
+           I                 ***S**      *S*                             I
+           I                 ***S**      *S*                             I
+     -33.94I                 ***S**      *S*                             I    -33.94
+           I                 ***S**      *S**                            I
+           I                 ***S**      *S**                            I
+           I                 ***S**     **S**                  *         I
+     -36.55I                 ***S***    **S**                  *         I    -36.55
+           I      *          ***S***    **S***                 *         I
+           I   *  *    *    ****S***    **S***                 *         I
+           I   *  *    *    ****S***    **S***                 *         I
+     -39.16I   *  **   *    ****S***    **S****                *T        I    -39.16
+           I   *****   *    ****S***   ***S****                *T        I
+           I   *****  S*    ****S****  ***S****                *T        I
+           I   *****  S*    ****S****  ***S*******             *T        I
+     -41.77I  ******  S*    ****S*********S*******     *      S*T        I    -41.77
+           I  ******  S*    ****S*********S*******     *      S*T        I
+           I  ********S**  *****S*********S*******     *      S*T        I
+           I  ********S**  *****S*********S*******     *      S*T        I
+     -44.38I  ********S**  *****S*********S*******     *      S*T*       I    -44.38
+           I  ********S**  *****S*********S*******     *      S*T*       I
+           I *********S*********S*********S*******     *      S*T*  *    I
+           I *********S*********S*********S********    *      S*T*  *    I
+     -46.99I**********S*********S*********S********    *      S*T*****   I    -46.99
+           I**********S*********S*********S********    *      S*T*****   I
+           I**********S*********S*********S********    **    *S*T******  I
+           I**********S*********S*********S********    **    *S*T******  I
+     -49.60I**********S*********S*********S********    **    *S*T******* I    -49.60
+           I**********S*********S*********S********   T**    *S*T*******SI
+           I**********S*********S*********S*********  T**    *S*T*******SI
+           I**********S*********S*********S*********  T**    *S*T*******SI
+     -52.21I**********S*********S*********S*********  T**   **S*T*******SI    -52.21
+           I**********S*********S*********S*********S*T**   **S*T*******SI
+           I**********S*********S*********S*********S*T***  **S*T*******SI
+           I**********S*********S*********S*********S*T***  **S*T*******SI
+     -54.82I**********S*********S*********S*********S*T*******S*T*******SI    -54.82
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES
+        ApparelCPI            PAGE  21, SERIES ApparelCPI
+ G 1  10*LOG(SPECTRUM) of the differenced, transformed seasonally adjusted 
+      data (Table E2).  Spectrum estimated from 2017.Jan to 2021.Dec.
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -36.80I                                                             I    -36.80
+           I   *                                                         I
+           I   *                                                         I
+           I   *                                                         I
+     -38.32I   *                                                         I    -38.32
+           I   *                                                         I
+           I   *   *         *                                           I
+           I   *   *         *                                           I
+     -39.84I   **  *         *                                           I    -39.84
+           I  ***  *         *                                           I
+           I  ***  *         *                                      *    I
+           I  *** **         *                                      *    I
+     -41.36I  *** **         *                                      *    I    -41.36
+           I  *******        *                                      *    I
+           I  *******        *                                      *    I
+           I  *******        *   *                                  *    I
+     -42.89I  *******        *   *                                  *    I    -42.89
+           I  *******        *   *                                  *    I
+           I  *******        *   **                                 *    I
+           I ********        **  **                                 *    I
+     -44.41I ********        **  **                                 *    I    -44.41
+           I ********       ***  **                                 **   I
+           I*********       ***  **                                 **   I
+           I**********   *  ***  **             *                   **   I
+     -45.93I**********   *  ***  **             *                   **   I    -45.93
+           I**********   *  ***  **             *                   **   I
+           I**********  *** ***  **             *                   **   I
+           I**********  *******  **             *                   **   I
+     -47.45I**********  *******  **             *                   **   I    -47.45
+           I**********S*********S**             *                   **   I
+           I**********S*********S**   *         *          *       ***   I
+           I**********S*********S**   *         **         *       ***   I
+     -48.97I**********S*********S**   *         **         **      ***   I    -48.97
+           I**********S*********S**   *        ***      *  **      ***   I
+           I**********S*********S**   *     *  ***      * ***      ***   I
+           I**********S*********S***  *     *  ***      *****      ***   I
+     -50.49I**********S*********S***  *     *  ***      *****      ****  I    -50.49
+           I**********S*********S*** **     ** ***      *****      ****  I
+           I**********S*********S*** **     ******      *****     *****  I
+           I**********S*********S*** **     ******      *****     *****  I
+     -52.01I**********S*********S*******    ******      ******    *****  I    -52.01
+           I**********S*********S*******    ******     *******   ******  I
+           I**********S*********S*******   *******     *******   ******* I
+           I**********S*********S*******   ********    *******  T******* I
+     -53.53I**********S*********S*******   ********    *******S T*******SI    -53.53
+           I**********S*********S*******   ********    *******S*T*******SI
+           I**********S*********S*******   ********    *******S*T*******SI
+           I**********S*********S*******   ********    *******S*T*******SI
+     -55.05I**********S*********S*******   ********   T*******S*T*******SI    -55.05
+           I**********S*********S********  ********   T*******S*T*******SI
+           I**********S*********S******** S*********  T*******S*T*******SI
+           I**********S*********S******** S*********  T*******S*T*******SI
+     -56.57I**********S*********S*********S*********S*T*******S*T*******SI    -56.57
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES
+        ApparelCPI            PAGE  22, SERIES ApparelCPI
+ G 2  10*LOG(SPECTRUM) of the Modified Irregular (Table E3).  
+      Spectrum estimated from 2017.Jan to 2021.Dec.
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+     -46.87I                                                             I    -46.87
+           I                      *                                 *    I
+           I                      *                                 *    I
+           I                      *                                 *    I
+     -48.54I                 *    *                                 *    I    -48.54
+           I                 *    *             *                   *    I
+           I                 *   **             *                   **   I
+           I                 *   **             *                   **   I
+     -50.22I                 *   **             *                   **   I    -50.22
+           I                 **  **             *                   **   I
+           I                 **  **   *         *                   **   I
+           I                 **  **   *         *                   **   I
+     -51.90I                 **  **   *     *   **                  **   I    -51.90
+           I        *        **  **   *     *   **                  **   I
+           I        *        **  **   *     *   **                  **   I
+           I        *        **  **   *     ** ***      *          ***   I
+     -53.57I        *       *** S*** **     ** ***      *          ***   I    -53.57
+           I        *       ****S*** **     ** ***      *          ***   I
+           I        *    *  ****S*** **     ******      **         ***   I
+           I        *    *  ****S*** **     ******      ** *       ***   I
+     -55.25I        *   **  ****S*** **     ******      ****       ****  I    -55.25
+           I   *    *   **  ****S******     ******      *****      ****  I
+           I   *    *   **  ****S*******   *******      *****     *****  I
+           I   *    *   ********S*******   *******      *****     *****  I
+     -56.93I   *    **  ********S*******   *******     ******     *****  I    -56.93
+           I   *    **  ********S*******   *******     ******     *****  I
+           I   *    **  ********S*******   ********    *******   ******  I
+           I   *    **  ********S*******   ********    *******   ******* I
+     -58.60I   *    **  ********S*******   ********    *******S T******* I    -58.60
+           I   *    ** *********S*******   ********    *******S*T*******SI
+           I   *    ** *********S*******   ********    *******S*T*******SI
+           I   *    **S*********S******** S********    *******S*T*******SI
+     -60.28I   *    **S*********S******** S********    *******S*T*******SI    -60.28
+           I   *    **S*********S******** S********   T*******S*T*******SI
+           I   *   ***S*********S*********S*********  T*******S*T*******SI
+           I   *   ***S*********S*********S*********  T*******S*T*******SI
+     -61.96I  **   ***S*********S*********S*********  T*******S*T*******SI    -61.96
+           I  **   ***S*********S*********S*********S*T*******S*T*******SI
+           I  **   ***S*********S*********S*********S*T*******S*T*******SI
+           I  **   ***S*********S*********S*********S*T*******S*T*******SI
+     -63.64I  ***  ***S*********S*********S*********S*T*******S*T*******SI    -63.64
+           I  ***  ***S*********S*********S*********S*T*******S*T*******SI
+           I  ***  ***S*********S*********S*********S*T*******S*T*******SI
+           I  ***  ***S*********S*********S*********S*T*******S*T*******SI
+     -65.31I  *** ****S*********S*********S*********S*T*******S*T*******SI    -65.31
+           I  *** ****S*********S*********S*********S*T*******S*T*******SI
+           I  ********S*********S*********S*********S*T*******S*T*******SI
+           I  ********S*********S*********S*********S*T*******S*T*******SI
+     -66.99I  ********S*********S*********S*********S*T*******S*T*******SI    -66.99
+           I *********S*********S*********S*********S*T*******S*T*******SI
+           I *********S*********S*********S*********S*T*******S*T*******SI
+           I *********S*********S*********S*********S*T*******S*T*******SI
+     -68.67I**********S*********S*********S*********S*T*******S*T*******SI    -68.67
+ ++++++++++I+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++I
+            S=SEASONAL FREQUENCIES

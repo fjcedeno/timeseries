@@ -2,20 +2,14 @@ library(forecast)
 library(dlm)
 library(MLmetrics)
 
-train<-head(Nile,-4)
-test<-tail(Nile,4)
-
-lambda <- BoxCox.lambda(train,lower=0)
-
-train=BoxCox(train, lambda)
+train<-head(log(Nile),-4)
+test<-tail(log(Nile),4)
 
 
 
 
 
-#mod<- auto.arima(train,allowdrift = FALSE, allowmean = FALSE,d=0,max.q = 0)
-
-mod<-Arima(train,order = c(2,0,0),include.mean = FALSE,include.drift = TRUE)
+mod<-Arima(train,order = c(2,0,0),include.mean = FALSE,include.drift = FALSE)
 
 nileBuild <- function(par) {
   dlmModARMA(ar = mod$coef, ma = NULL, dV=par[1],sigma2 =mod$sigma2 )
@@ -47,7 +41,7 @@ Box.test (mod$residuals, lag = 10, type = "Ljung")
 shapiro.test(mod$residuals)
 
 
-InvBoxCox(, lambda, biasadj = FALSE, fvar = NULL)
+
 
 
 
